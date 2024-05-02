@@ -1,9 +1,10 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import './SearchPage.scss';
 import { useQuery } from "react-query";
 import { listPokemon } from "../services/listPokemon";
+import PokemonCard from "../components/PokemonCard/PokemonCard";
 
 const Loader = () => {
 	return (
@@ -33,7 +34,7 @@ export default function SearchPage() {
 				<div className="results">
 				{
 					search && 
-					data?.map((val, index) => <div key={index}>{val.name}</div>)
+					data?.map((val, index) => <PokemonCard key={index} name={val?.name}/>)
 				}
 				</div>
 			</div>
