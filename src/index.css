@@ -26,3 +26,8 @@ input::selection {
   color: var(--accent);
   background-color: #fff;
 }
+
+*{
+  margin: 0px;
+  padding: 0px;
+}

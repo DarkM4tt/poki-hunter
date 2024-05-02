@@ -7,6 +7,7 @@ $duration: 0.23s;
 	justify-content: center;
 	align-items: center;
 	transition: all $duration ease-out;
+	position: relative;
 
 	> .searchModal {
 		width: 80px; height: 80px;
