@@ -41,7 +41,7 @@ export default function SearchPage() {
 				<div className="results">
 				{
 					search && 
-					data?.map((val, index) => <PokemonCard onClick={()=>setOpenDetail(val?.name)} key={index} name={val?.name}/>)
+					data?.map((val, index) => <PokemonCard onClick={()=>setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name}/>)
 				}
 				</div>
 			</div>
