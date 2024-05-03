@@ -7,6 +7,7 @@ import { listPokemon } from "../services/listPokemon";
 import PokemonCard from "../components/PokemonCard/PokemonCard";
 import PokemonDetail from "../components/PokemonDetail/PokemonDetail";
 import { useDebounce } from "../hooks/useDebounce";
+import PokemonNotFound from "../components/PokemonNotFound/PokemonNotFound";
 
 export const Loader = () => {
 	return (
@@ -42,8 +43,8 @@ export default function SearchPage() {
 				</div>
 				<div className="results">
 				{
-					debouncedSearch && 
-					data?.map((val, index) => <PokemonCard onClick={()=>setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name}/>)
+					debouncedSearch && data && data.length>0?
+					data?.map((val, index) => <PokemonCard onClick={()=>setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name}/>):<PokemonNotFound />
 				}
 				</div>
 			</div>

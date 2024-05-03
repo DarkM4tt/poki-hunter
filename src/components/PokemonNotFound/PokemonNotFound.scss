@@ -1,0 +1,19 @@
+.pokemonNotFound{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+
+    > .header{
+        font-size: 32px;
+        font-weight: 500;
+    }
+    .desc{
+        font-size: 28px;
+        font-weight: 500;
+        margin-top: 8px;
+    }
+}
