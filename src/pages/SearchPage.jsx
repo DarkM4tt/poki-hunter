@@ -34,11 +34,11 @@ export default function SearchPage() {
 	}
 
 	return (
-		<div className={`searchPage ${isLoading ? 'loaded' : ''} ${search ? 'searched' : ''}`}>
+		<div className={`searchPage ${isLoading ? 'loaded' : ''} ${debouncedSearch ? 'searched' : ''}`}>
 			<div className="searchModal">
 				<div className="search">
-					<input className="field" value={search || ''} placeholder="Type Something Here..." onChange={onSearch} />
-					<IoIosSearch className="icon" />
+					<input className="field" value={search || ''} placeholder="Search for Pokemon here, Catch 'em all!" onChange={onSearch} />
+					<IoIosSearch className={`icon ${debouncedSearch ? 'icon-searched' : ''}`} />
 				</div>
 				<div className="results">
 				{

@@ -54,6 +54,9 @@ $duration: 0.23s;
 				stroke: var(--accent);
 				transition: stroke $duration ease-out;
 			}
+			.icon-searched{
+				fill: white;
+			}
 		}
 
 		> .results {
