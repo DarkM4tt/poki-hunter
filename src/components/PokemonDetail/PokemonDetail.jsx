@@ -7,7 +7,7 @@ import { Loader } from '../../pages/SearchPage';
 import { IoClose } from "react-icons/io5";
 
 const DetailList = ({ header, list }) => {
-	return <div className='details'>{ }<div className='header'>{header}</div><div className='list'>{list.map((item, i) => <div ket={i} className='item'>{item}</div>)}</div></div>
+	return <div className='details'>{ }<div className='header'>{header}</div><div className='list'>{list.map((item, i) => <div key={i} className='item'>{item}</div>)}</div></div>
 }
 
 
