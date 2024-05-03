@@ -16,14 +16,14 @@ export const Loader = () => {
 }
 
 export default function SearchPage() {
-	
+
 	const navigate = useNavigate();
 	const { search } = useParams();
 	const [openDetail, setOpenDetail] = useState('');
 
 	const debouncedSearch = useDebounce(search, 400);
 
-	const {data, isLoading} = useQuery(debouncedSearch, listPokemon);
+	const { data, isLoading } = useQuery(debouncedSearch, listPokemon);
 
 	const onSearch = (event) => {
 		navigate(`/search/${encodeURIComponent(event.target.value)}`);
@@ -42,13 +42,13 @@ export default function SearchPage() {
 					<IoIosSearch className={`icon ${debouncedSearch ? 'icon-searched' : ''}`} />
 				</div>
 				<div className="results">
-				{
-					debouncedSearch && data && data.length>0?
-					data?.map((val, index) => <PokemonCard onClick={()=>setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name}/>):<PokemonNotFound />
-				}
+					{
+						debouncedSearch && data && data.length > 0 ?
+							data?.map((val, index) => <PokemonCard onClick={() => setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name} />) : isLoading ? null : <PokemonNotFound />
+					}
 				</div>
 			</div>
-			{openDetail && <PokemonDetail name={openDetail} onClose={onClose}/>}
+			{openDetail && <PokemonDetail name={openDetail} onClose={onClose} />}
 			{debouncedSearch && isLoading && <Loader />}
 		</div>
 	);
