@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { listPokemon } from "../services/listPokemon";
 import PokemonCard from "../components/PokemonCard/PokemonCard";
 import PokemonDetail from "../components/PokemonDetail/PokemonDetail";
+import { useDebounce } from "../hooks/useDebounce";
 
 export const Loader = () => {
 	return (
@@ -19,8 +20,9 @@ export default function SearchPage() {
 	const { search } = useParams();
 	const [openDetail, setOpenDetail] = useState('');
 
-	const {data, isLoading} = useQuery(search, listPokemon);
+	const debouncedSearch = useDebounce(search, 400);
 
+	const {data, isLoading} = useQuery(debouncedSearch, listPokemon);
 
 	const onSearch = (event) => {
 		navigate(`/search/${encodeURIComponent(event.target.value)}`);
@@ -40,13 +42,13 @@ export default function SearchPage() {
 				</div>
 				<div className="results">
 				{
-					search && 
+					debouncedSearch && 
 					data?.map((val, index) => <PokemonCard onClick={()=>setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name}/>)
 				}
 				</div>
 			</div>
 			{openDetail && <PokemonDetail name={openDetail} onClose={onClose}/>}
-			{search && isLoading && <Loader />}
+			{debouncedSearch && isLoading && <Loader />}
 		</div>
 	);
 }
