@@ -23,6 +23,13 @@ Pokihunter is a modern Pokémon search application built using React.js and Node
 - **Design:** Creatively designed UI for engaging user experience.
 - **Rich Information Display:** Showcases comprehensive Pokémon attributes sourced from the API.
 
-Screenshots👇
-![alt text](image-1.png)
-![alt text](image.png)
+## Screenshots
+
+#### Search:
+![Search](search-ss.png)
+
+#### List:
+![List](list-ss.png)
+
+#### Detail:
+![Detail](detail-ss.png)
