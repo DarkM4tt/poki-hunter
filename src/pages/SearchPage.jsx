@@ -23,7 +23,7 @@ export default function SearchPage() {
 
 	const debouncedSearch = useDebounce(search, 400);
 
-	const { data, isLoading } = useQuery(debouncedSearch, listPokemon);
+	const { data, isLoading, isSuccess } = useQuery(debouncedSearch, listPokemon);
 
 	const onSearch = (event) => {
 		navigate(`/search/${encodeURIComponent(event.target.value)}`);
@@ -36,20 +36,25 @@ export default function SearchPage() {
 
 	return (
 		<div className={`searchPage ${isLoading ? 'loaded' : ''} ${debouncedSearch ? 'searched' : ''}`}>
+
 			<div className="searchModal">
 				<div className="search">
 					<input className="field" value={search || ''} placeholder="Search for Pokemon here, Catch 'em all!" onChange={onSearch} />
 					<IoIosSearch className={`icon ${debouncedSearch ? 'icon-searched' : ''}`} />
 				</div>
-				<div className="results">
-					{
-						debouncedSearch && data && data.length > 0 ?
-							data?.map((val, index) => <PokemonCard onClick={() => setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name} />) : isLoading ? null : <PokemonNotFound />
-					}
-				</div>
+				{isSuccess && data.length === 0 ? <PokemonNotFound /> : <>
+					<div className="results">
+						{
+							debouncedSearch && data &&
+							data?.map((val, index) => <PokemonCard onClick={() => setOpenDetail(val?.name)} key={index} id={val.id} name={val?.name} />)
+						}
+					</div>
+					{openDetail && <PokemonDetail name={openDetail} onClose={onClose} />}
+					{debouncedSearch && isLoading && <Loader />}
+				</>
+				}
 			</div>
-			{openDetail && <PokemonDetail name={openDetail} onClose={onClose} />}
-			{debouncedSearch && isLoading && <Loader />}
+
 		</div>
 	);
 }
